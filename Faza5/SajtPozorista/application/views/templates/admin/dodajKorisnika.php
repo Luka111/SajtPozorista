@@ -4,14 +4,14 @@
         <div class="row">
 
             <div class="col-lg-12">
-                <h1 class="page-header">Register</h1>
+                <h1 class="page-header">Dodaj korisnika</h1>
             </div>
 
         </div>
 
         <?php echo validation_errors(); ?>
 
-        <?php echo form_open('register/registerUser') ?>
+        <?php echo form_open('admin/dodajNovogKorisnika') ?>
 
         <label for="name" align="left">Username <font color="red"> * </font></label><br/>
         <input type="text" id="username" name="username" value="<?php echo set_value('username'); ?>" spellcheck="false" maxlength="40" size="40"/><br/>
@@ -29,6 +29,8 @@
         <select id="role" name="role" value="<?php echo set_value('role'); ?>">
             <option value="registrovan">registrovan</option>
             <option value="kriticar">kriticar</option>
+            <option value="moderator">moderator</option>
+            <option value="admin">admin</option>
         </select><br/>
 
         <label for="telefon">Telefon<font color="red"> * </font></label><br/>
