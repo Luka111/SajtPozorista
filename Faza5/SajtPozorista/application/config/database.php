@@ -64,8 +64,8 @@ $query_builder = TRUE;
 
 $db['default'] = array(
 	'dsn'	=> '',
-	'hostname' => 'localhost',
-	'username' => 'root',
+	'hostname' => getenv('IP'),
+	'username' => 'dehumanise',
 	'password' => '',
 	'database' => 'sajt_pozorista',
 	'dbdriver' => 'mysqli',

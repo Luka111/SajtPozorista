@@ -29,6 +29,7 @@
         <select id="role" name="role" value="<?php echo set_value('role'); ?>">
             <option value="registrovan">registrovan</option>
             <option value="kriticar">kriticar</option>
+            <option value="moderator">moderator</option>
         </select><br/>
 
         <label for="telefon">Telefon<font color="red"> * </font></label><br/>
