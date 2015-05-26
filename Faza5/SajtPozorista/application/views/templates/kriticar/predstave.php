@@ -7,7 +7,7 @@
                 <h1 class="page-header">Predstave</h1>
             </div>
 
-        </div>
+        </div><br/>
 
         <?php
         for ($i = 0; $i < sizeof($predstave); $i++) {
@@ -19,7 +19,7 @@
             }
             echo '<div class="col-md-4 portfolio-item">';
             echo '<a href="' . route_url('predstave/predstava/') . $predstave[$i]['PredID'] . '">';
-            echo '<img class="img-responsive" src="' . display_image('predstave',$predstave[$i]['Slika'],'750x450.gif') . '">';
+            echo '<img class="img-responsive" src="' . display_image('predstave', $predstave[$i]['Slika'], '750x450.gif') . '">';
             echo '<h3>' . $predstave[$i]['Naziv'] . '</h3>';
             echo '</a>';
             echo '</div>';

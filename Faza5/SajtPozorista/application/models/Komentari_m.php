@@ -6,18 +6,17 @@ class Komentari_m extends CI_Model {
         $this->load->database();
     }
 
-    public function insert($creatorUsername/* ,TODO $predstavaID) */) {
+    public function insert($creatorUsername , $predID) {
         $data = array(
             'Tekst' => $this->input->post('tekst'),
-            //TODO 'PredID' => $predstavaID
+            'PredID' => $predID,
             'Username' => $creatorUsername
         );
         return $this->db->insert('komentar', $data);
     }
 
-    public function find(/* TODO $predstavaID */) {
-        //$query = $this->db->get_where('komentar', array('PredID' => $predstavaID));
-        $query = $this->db->get('komentar');
+    public function find($predID) {
+        $query = $this->db->get_where('komentar', array('PredID' => $predID));
         return $query->result_array();
     }
 

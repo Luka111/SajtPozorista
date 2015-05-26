@@ -19,13 +19,7 @@ class Predstave_m extends CI_Model {
     }
 
     public function findOne($id) {
-        $query = $this->db
-        ->select('predstava.PozID, predstava.predID AS PredID, pozoriste.Naziv AS Pozoriste, predstava.Naziv 
-        AS Naziv, predstava.Glumci as Glumci, predstava.Reziser AS Reziser, predstava.Slika AS Slika')
-        ->from('predstava')
-        ->join('pozoriste','pozoriste.PozID = predstava.PozID')
-        ->where(array('PredID' => $id))
-        ->get();
+        $query = $this->db->get_where('predstava', array('PredID' => $id));
         return $query->row_array();
     }
 

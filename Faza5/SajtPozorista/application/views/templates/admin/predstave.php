@@ -11,10 +11,10 @@
         <div class="row">
 
             <div class="col-lg-12">
-                <a href="<?php echo route_url('predstave/dodaj')?>"><button type="button" class="btn btn-lg btn-primary">Dodaj</button></a>
+                <a href="<?php echo route_url('predstave/dodaj') ?>"><button type="button" class="btn btn-lg btn-primary">Dodaj</button></a>
             </div>
 
-    </div>
+        </div><br/>
 
         <?php
         for ($i = 0; $i < sizeof($predstave); $i++) {
@@ -26,7 +26,7 @@
             }
             echo '<div class="col-md-4 portfolio-item">';
             echo '<a href="' . route_url('predstave/predstava/') . $predstave[$i]['PredID'] . '">';
-            echo '<img class="img-responsive" src="' . display_image('predstave',$predstave[$i]['Slika'],'750x450.gif') . '">';
+            echo '<img class="img-responsive" src="' . display_image('predstave', $predstave[$i]['Slika'], '750x450.gif') . '">';
             echo '<h3>' . $predstave[$i]['Naziv'] . '</h3>';
             echo '</a>';
             echo '</div>';

@@ -9,52 +9,23 @@
         </div>
 
         <div class="row">
-            
+
             <?php echo validation_errors(); ?>
 
-            <?php echo form_open('kritike/izmeniKritiku/','',array('KritID' => $kritika['KritID']))?>
-			  <div class="form-group">
-				<label for="naslov">Naslov*</label>
-				<input type="text" class="form-control" id="naslov" placeholder="unesite naslov" value="<?php echo $kritika('naslov'); ?>">
-			  </div>
-			  <div class="form-group">
-				<label for="tekst">Tekst*</label>
-				<textarea class="form-control" id="tekst" rows="3" placeholder="unesite tekst kritike"></textarea>
-			  </div>
-			  <div class="form-group">
-				<label for="predID">Predstava</label>
-				<select id="predID" name="predID" class="form-control">
-				    <?php
-    				    for($i=0; $i<sizeof($predstave);$i++){
-    				        $selected='';
-    				        if($predstave[$i]['KritID']== $kritika['KritID'])
-    				        $selected = ' selected="selected"';
-    				        echo '<option value="'.$predstave[$i]['PredID'].'"'.$selected.'>'.$predstave[$i]['Naziv'].'</option>';
-    				    }
-				    ?>
-				</select>
-			  </div>
-			  <!--
-			  <div class="form-group">
-				<div class="dropdown">
-				  <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
-					Izaberite Predstavu*
-					<span class="caret"></span>
-				  </button>
-				  <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
-					<li role="presentation" class="dropdown-header">Prvo Pozorište</li>
-					<li role="presentation"><a role="menuitem" tabindex="-1" href="#">Prva Predstava</a></li>
-					<li role="presentation"><a role="menuitem" tabindex="-1" href="#">Druga Predstava</a></li>
-					<li role="presentation" class="dropdown-header">Drugo Pozorište</li>
-					<li role="presentation"><a role="menuitem" tabindex="-1" href="#">Prva Predstava</a></li>
-				  </ul>
-				</div>
-			  </div>-->
-			  <input type="submit" value="Dodaj" name="button" id="dodajKritiku" class="btn btn-default"/>
-		     <?php echo form_close() ?>
+            <?php echo form_open('predstave/izmeniKritikuSubmit/', '', array('KritID' => $kritika['KritID'], 'PredID' => $kritika['PredID'], 'CreatorUsername' => $kritika['Username'])) ?>
+            <div class="form-group">
+                <label for="naslov">Naslov<font color="red"> * </font></label>
+                <input type="text" class="form-control" name="naslov" id="naslov" value="<?php echo $kritika['Naslov']; ?>">
+            </div>
+            <div class="form-group">
+                <label for="sadrzaj">Sadrzaj<font color="red"> * </font></label>
+                <textarea class="form-control" name="sadrzaj" id="sadrzaj" rows="3"><?php echo $kritika['Sadrzaj']; ?></textarea>
+            </div>
+            <input type="submit" value="Dodaj" name="button" id="dodajKritiku" class="btn btn-default"/>
+            <?php echo form_close() ?>
 
         </div>
 
     </div>
 </div>
-   <!-- /.container -->
+<!-- /.container -->

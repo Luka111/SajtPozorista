@@ -6,37 +6,24 @@ class Kritike_m extends CI_Model{
         $this->load->database();
     }
     
-    public function insert($creatorUsername){
+    public function insert($creatorUsername, $predID){
         $data = array(
-            'PredID' => $this->input->post('PredID'),
+            'PredID' => $predID,
             'Naslov' => $this->input->post('naslov'),
             'Sadrzaj' => $this->input->post('sadrzaj'),
-            //Slike
-            'Username' => $this->input->post('Username')
+            'Username' => $creatorUsername
         );
-        return $this->db->insert('kritka', $data);
+        return $this->db->insert('kritika', $data);
     }
     
      public function findOne($id) {
-        $query = $this->db
-        ->select('kritika.predID, kritika.KritID AS KritID, predstava.Naziv AS Predstava, kritika.Naslov AS Naslov, kritika.Sadrzaj AS sadrzaj ')
-        ->from('kritika')
-        ->join('predstava','predstava.PredID = kritika.KritID')
-        ->where(array('KritID' => $id))
-        ->get();
+        $query = $this->db->get_where('kritika', array('KritID' => $id));
         return $query->row_array();
     }
     
-     public function find() {
-        $this->db->select('KritID, Naslov');
-        $query = $this->db->get('kritika');
-        return $query->result_array();
-    }
-    
-    public function findSpecific($predID) {
-        $this->db->select('KritID, Naslov')
-        ->where(array('PredID' => $predID));
-        $query = $this->db->get('kritika');
+     public function find($predID) {
+        $this->db->select('KritID, Naslov, Username');
+        $query = $this->db->get_where('kritika', array('PredID' => $predID));
         return $query->result_array();
     }
 
@@ -46,10 +33,8 @@ class Kritike_m extends CI_Model{
 
     public function update() {
         $data = array(
-            'PredID' => $this->input->post('PredID'),
-            'Naslov' => $this->input->pos('naslov'),
-            'Sadrzaj' => $this->input->post('sadrzaj'),
-            //TODO 'Slika' => ...
+            'Naslov' => $this->input->post('naslov'),
+            'Sadrzaj' => $this->input->post('sadrzaj')
         );
         $this->db->where('KritID', $this->input->post('KritID'));
         $this->db->update('kritika', $data);

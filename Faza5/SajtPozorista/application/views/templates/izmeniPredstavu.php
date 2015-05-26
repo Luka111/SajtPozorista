@@ -17,11 +17,11 @@
 
             <?php echo form_open_multipart('predstave/izmeniPredstavu/','',array('PredID' => $predstava['PredID']))?>
             <div class="form-group">
-				<label for="naziv">Naziv*</label>
-				<input type="text" class="form-control" name="naziv" id="naziv" placeholder="unesite naziv" value="<?php echo $predstava['Naziv']; ?>">
+				<label for="naziv">Naziv<font color="red"> * </font></label>
+				<input type="text" class="form-control" name="naziv" id="naziv" value="<?php echo $predstava['Naziv']; ?>">
 			  </div>
 			  <div class="form-group">
-				<label for="pozID">Pozorište*</label>
+				<label for="pozID">Pozorište<font color="red"> * </font></label>
 				<select id="pozID" name="pozID" class="form-control">
 				    <?php
     				    for($i=0; $i<sizeof($pozorista);$i++){
@@ -35,11 +35,11 @@
 			  </div>
 			  <div class="form-group">
 				<label for="glumci">Glumci</label>
-				<textarea class="form-control" id="glumci" name="glumci" rows="3" placeholder="unesite imena glumaca"><?php echo $predstava['Glumci']; ?></textarea>
+				<textarea class="form-control" id="glumci" name="glumci" rows="3"><?php echo $predstava['Glumci']; ?></textarea>
 			  </div>
 			  <div class="form-group">
 				<label for="reziser">Režiser</label>
-				<input type="text" class="form-control" id="reziser" name="reziser" placeholder="unesite režisera" value="<?php echo $predstava['Reziser']; ?>">
+				<input type="text" class="form-control" id="reziser" name="reziser" value="<?php echo $predstava['Reziser']; ?>">
 			  </div>
 			  <div class="row">
                 <div class="col-md-6 portfolio-item">
