@@ -21,9 +21,7 @@
                         <li class="divider"></li>
                         <li><a href="<?php echo route_url('vesti/dodaj')?>">Dodaj vest</a></li>
                         <li class="divider"></li>
-                        <li><a href="#">Dodaj predstavu</a></li>
-                        <li class="divider"></li>
-                        <li><a href="#">Dodaj kritiku</a></li>
+                        <li><a href="<?php echo route_url('predstave/dodaj')?>">Dodaj predstavu</a></li>
                     </ul>
                 </li>
                 <li><a href="<?php echo route_url('vesti/view') ?>">Vesti</a>

@@ -145,6 +145,7 @@ class Predstave extends Base {
         }
     }
 
+    /* Replacing with AJAX version
     public function dodajKomentar() {
         if (!checkPermission(array('moderator', 'admin', 'kriticar', 'registrovan'), $this->userRole)) {
             redirect(route_url(''));
@@ -160,6 +161,27 @@ class Predstave extends Base {
                     $this->predstava($this->input->post('PredID'));
                 }
             }
+        }
+    }
+    */
+    public function dodajKomentar() {
+        if (!checkPermission(array('moderator', 'admin', 'kriticar', 'registrovan'), $this->userRole)) {
+            redirect(route_url(''));
+        } else {
+            $response = array();
+            header("content-type:application/json");
+            if (!$this->input->post('Tekst')){
+                $response['status'] = 'nok';
+            } else {
+                $KomID = $this->komentari_m->insert($this->session->username, $this->input->post('PredID'));
+                if ($KomID) {
+                    $response['status'] = 'ok';
+                    $response['KomID'] = $KomID;
+                } else {
+                    $response['status'] = 'nok';
+                }
+            }
+            echo json_encode($response);
         }
     }
 

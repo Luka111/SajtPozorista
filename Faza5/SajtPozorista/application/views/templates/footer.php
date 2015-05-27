@@ -10,10 +10,6 @@
 </div>
 <!-- /.container -->
 
-<!-- JavaScript -->
-<script src="<?php echo asset_url('js/jquery-1.10.2.js')?>"></script>
-<script src="<?php echo asset_url('js/bootstrap.js')?>"></script>
-
 <!-- Script to Activate the Carousel -->
 <script>
     $('.carousel').carousel({

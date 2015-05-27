@@ -8,11 +8,12 @@ class Komentari_m extends CI_Model {
 
     public function insert($creatorUsername , $predID) {
         $data = array(
-            'Tekst' => $this->input->post('tekst'),
+            'Tekst' => $this->input->post('Tekst'),
             'PredID' => $predID,
             'Username' => $creatorUsername
         );
-        return $this->db->insert('komentar', $data);
+        $this->db->insert('komentar', $data);
+        return $this->db->insert_id();
     }
 
     public function find($predID) {

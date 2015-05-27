@@ -12,12 +12,6 @@
 
         <div class="collapse navbar-collapse navbar-right navbar-ex1-collapse">
             <ul class="nav navbar-nav">
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Dodaj<span class="caret"></span></a>
-                    <ul class="dropdown-menu" role="menu">
-                        <li><a href="#">Dodaj kritiku</a></li>
-                    </ul>
-                </li>
                 <li><a href="<?php echo route_url('vesti/view') ?>">Vesti</a>
                 </li>
                 <li><a href="#">Pozorišta</a>

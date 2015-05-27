@@ -28,10 +28,11 @@ class Predstave_m extends CI_Model {
         $query = $this->db->get('predstava');
         return $query->result_array();
     }
-
-    public function findSpecific($pozID) {
-        $this->db->select('PredID, Naziv, Slika')
-        ->where(array('PozID' => $pozID));
+    
+    public function findAktuelnePredstave(){
+        $this->db->select('PredID, Naziv, Slika');
+        $this->db->order_by('Naziv', 'RANDOM');
+        $this->db->limit(3);
         $query = $this->db->get('predstava');
         return $query->result_array();
     }

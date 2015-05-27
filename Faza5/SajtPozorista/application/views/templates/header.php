@@ -9,9 +9,13 @@
 
         <title>Sajt Pozorišta</title>
 
-        <link href="<?php echo asset_url('css/bootstrap.css')?>" rel="stylesheet">
+        <link href="<?php echo asset_url('css/bootstrap.css') ?>" rel="stylesheet">
 
-        <link href="<?php echo asset_url('css/sajtpozorista.css')?>" rel="stylesheet">
+        <link href="<?php echo asset_url('css/sajtpozorista.css') ?>" rel="stylesheet">
+
+        <!-- JavaScript -->
+        <script src="<?php echo asset_url('js/jquery-1.10.2.js') ?>"></script>
+        <script src="<?php echo asset_url('js/bootstrap.js') ?>"></script>
 
     </head>
 
