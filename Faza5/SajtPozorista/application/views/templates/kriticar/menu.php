@@ -14,7 +14,7 @@
             <ul class="nav navbar-nav">
                 <li><a href="<?php echo route_url('vesti/view') ?>">Vesti</a>
                 </li>
-                <li><a href="#">Pozorišta</a>
+                <li><a href="<?php echo route_url('pozorista/view')?>">Pozorišta</a>
                 </li>
                 <li><a href="<?php echo route_url('login/logout') ?>">Logout</a>
                 </li>

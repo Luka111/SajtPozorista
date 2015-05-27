@@ -4,25 +4,27 @@
         <div class="row">
 
             <div class="col-lg-12">
-                <h1 class="page-header"><?php echo $predstava['Naziv']; ?></h1>
+                <h1 class="page-header"><?php echo $pozoriste['Naziv']; ?></h1>
             </div>
 
         </div>
+
         <br>
         <div class="row">
             <div class="col-md-6 portfolio-item">
                 <a href="#">
-                    <img class="img-responsive" src="<?php echo display_image('predstave', $predstava['Slika'], '750x450.gif') ?>">
+                    <img class="img-responsive" src="<?php echo display_image('pozorista', $pozoriste['Slika'], '750x450.gif') ?>">
                 </a>
             </div>
             <div class="col-md-4">
 
-                <h3><b>Glumci</b>: <?php echo $predstava['Glumci']; ?></h3>
-                <h3><b>Reziser</b>: <?php echo $predstava['Reziser']; ?></h3>
-                <h3><b>Pozoriste</b>: <?php echo '<a href="' . route_url('pozorista/pozoriste/' . $predstava['PozID']) . '">' . $nazivPozorista . '</a>'; ?></h3>
+                <h3><b>Naziv</b>: <?php echo $pozoriste['Naziv']; ?></h3>
+                <h3><b>Adresa</b>: <?php echo $pozoriste['Adresa']; ?></h3>
+                <h3><b>Email</b>: <?php echo $pozoriste['Email']; ?></h3>
+                <h3><b>Telefon</b>: <?php echo $pozoriste['Telefon']; ?></h3>
+                <h3><b>Opis</b>: <?php echo $pozoriste['Opis']; ?></h3>
 
             </div>
-
             <div class="col-md-2">
 
                 <div class="img-responsive pull-right">
@@ -39,4 +41,3 @@
 
     </div>
 </div>
-<div class="container">

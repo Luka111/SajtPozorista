@@ -15,16 +15,14 @@
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Dodaj<span class="caret"></span></a>
                     <ul class="dropdown-menu" role="menu">
-                        <li><a href="#">Dodaj pozorište</a></li>
+                        <li><a href="<?php echo route_url('pozorista/dodaj')?>">Dodaj pozorište</a></li>
                         <li class="divider"></li>
                         <li><a href="<?php echo route_url('vesti/dodaj')?>">Dodaj vest</a></li>
-                        <li class="divider"></li>
-                        <li><a href="<?php echo route_url('predstave/dodaj')?>">Dodaj predstavu</a></li>
                     </ul>
                 </li>
                 <li><a href="<?php echo route_url('vesti/view') ?>">Vesti</a>
                 </li>
-                <li><a href="#">Pozorišta</a>
+                <li><a href="<?php echo route_url('pozorista/view')?>">Pozorišta</a>
                 </li>
                 <li><a href="<?php echo route_url('login/logout') ?>">Logout</a>
                 </li>

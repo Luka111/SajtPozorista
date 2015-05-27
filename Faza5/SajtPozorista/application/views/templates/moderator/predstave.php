@@ -11,7 +11,7 @@
         <div class="row">
 
             <div class="col-lg-12">
-                <a href="<?php echo route_url('predstave/dodaj') ?>"><button type="button" class="btn btn-lg btn-primary">Dodaj</button></a>
+                <a href="<?php echo route_url('predstave/dodaj/' . $pozoriste['PozID'] . '/' . $pozoriste['Naziv']) ?>"><button type="button" class="btn btn-lg btn-primary">Dodaj predstavu</button></a>
             </div>
 
         </div><br/>

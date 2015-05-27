@@ -11,6 +11,7 @@ class Predstave extends Base {
         $this->load->model('predstave_m');
         $this->load->model('komentari_m');
         $this->load->model('kritike_m');
+        $this->load->model('pozorista_m');
         /* $this->load->model('pozorista_m'); */
         $this->load->helper('form');
     }
@@ -32,7 +33,9 @@ class Predstave extends Base {
             //Load kritike za predstavu
             $dataKritika['kritike'] = $this->kritike_m->find($data['predstava']['PredID']);
             $dataKritika['PredID'] = $data['predstava']['PredID'];
-            $this->load->view('templates/kritike', $dataKritika);
+            if (checkPermission(array('moderator', 'admin', 'kriticar', 'registrovan'), $this->userRole)) {
+                $this->load->view('templates/kritike', $dataKritika);
+            }
         } elseif ($this->viewIndicator === 'Insert') {
             /* $data['pozorista'] = $this->predstave_m->find(); */
             $data['pozorista'] = array(0 => array("PozID" => "1", "Naziv" => "Srpsko Narodno Pozoriste"), 1 => array("PozID" => "2", "Naziv" => "Neko Drugo Pozoriste"));
@@ -51,23 +54,25 @@ class Predstave extends Base {
         } elseif ($this->viewIndicator === 'UpdateKritika') {
             $this->load->view('templates/izmeniKritiku', $data);
         } else {
-            $data['predstave'] = $this->predstave_m->find();
-            $this->load->view('templates/' . $this->userRole . '/predstave', $data);
+            redirect(route_url(''));
         }
     }
 
     public function predstava($id) {
         $this->viewIndicator = 'View';
         $data['predstava'] = $this->predstave_m->findOne($id);
+        $data['nazivPozorista'] = $this->pozorista_m->findNaziv($data['predstava']['PozID'])['Naziv'];
         $this->view($data);
     }
 
-    public function dodaj() {
+    public function dodaj($PozID, $NazivPozorista) {
         if (!checkPermission(array('moderator', 'admin'), $this->userRole)) {
             redirect(route_url(''));
         } else {
             $this->viewIndicator = 'Insert';
-            $this->view();
+            $data['PozID'] = $PozID;
+            $data['NazivPozorista'] = urldecode($NazivPozorista);
+            $this->view($data);
         }
     }
 
@@ -89,9 +94,9 @@ class Predstave extends Base {
                     $this->dodaj($data);
                 } else {
                     $image = $this->upload->data();
-                    $ret = $this->predstave_m->insert($this->session->username, $image['file_name']);
-                    if ($ret) {
-                        redirect(route_url('predstave/view'));
+                    $PredID = $this->predstave_m->insert($this->session->username, $image['file_name']);
+                    if ($PredID) {
+                        redirect(route_url('predstave/predstava/' . $PredID));
                     } else {
                         $this->dodaj();
                     }
@@ -136,41 +141,42 @@ class Predstave extends Base {
         $this->form_validation->set_rules('naziv', 'Naziv', 'required');
     }
 
-    public function obrisi($id) {
+    public function obrisi($id, $PozID) {
         if (!checkPermission(array('moderator', 'admin'), $this->userRole)) {
             redirect(route_url(''));
         } else {
             $this->predstave_m->removeOne($id);
-            redirect('predstave/view');
+            redirect('pozorista/pozoriste/' . $PozID);
         }
     }
 
     /* Replacing with AJAX version
-    public function dodajKomentar() {
-        if (!checkPermission(array('moderator', 'admin', 'kriticar', 'registrovan'), $this->userRole)) {
-            redirect(route_url(''));
-        } else {
-            $this->validateKomentar();
-            if ($this->form_validation->run() === FALSE) {
-                $this->predstava($this->input->post('PredID'));
-            } else {
-                $ret = $this->komentari_m->insert($this->session->username, $this->input->post('PredID'));
-                if ($ret) {
-                    redirect(route_url('predstave/predstava/' . $this->input->post('PredID')));
-                } else {
-                    $this->predstava($this->input->post('PredID'));
-                }
-            }
-        }
-    }
-    */
+      public function dodajKomentar() {
+      if (!checkPermission(array('moderator', 'admin', 'kriticar', 'registrovan'), $this->userRole)) {
+      redirect(route_url(''));
+      } else {
+      $this->validateKomentar();
+      if ($this->form_validation->run() === FALSE) {
+      $this->predstava($this->input->post('PredID'));
+      } else {
+      $ret = $this->komentari_m->insert($this->session->username, $this->input->post('PredID'));
+      if ($ret) {
+      redirect(route_url('predstave/predstava/' . $this->input->post('PredID')));
+      } else {
+      $this->predstava($this->input->post('PredID'));
+      }
+      }
+      }
+      }
+     */
+
     public function dodajKomentar() {
         if (!checkPermission(array('moderator', 'admin', 'kriticar', 'registrovan'), $this->userRole)) {
             redirect(route_url(''));
         } else {
             $response = array();
             header("content-type:application/json");
-            if (!$this->input->post('Tekst')){
+            if (!$this->input->post('Tekst')) {
                 $response['status'] = 'nok';
             } else {
                 $KomID = $this->komentari_m->insert($this->session->username, $this->input->post('PredID'));
@@ -199,10 +205,14 @@ class Predstave extends Base {
     }
 
     public function kritika($id, $predID) {
-        $this->viewIndicator = 'ViewKritika';
-        $data['kritika'] = $this->kritike_m->findOne($id);
-        $data['PredID'] = $predID;
-        $this->view($data);
+        if (!checkPermission(array('moderator', 'admin', 'kriticar', 'registrovan'), $this->userRole)) {
+            redirect(route_url(''));
+        } else {
+            $this->viewIndicator = 'ViewKritika';
+            $data['kritika'] = $this->kritike_m->findOne($id);
+            $data['PredID'] = $predID;
+            $this->view($data);
+        }
     }
 
     public function dodajKritiku($predID) {
@@ -257,8 +267,8 @@ class Predstave extends Base {
             $this->view($data);
         }
     }
-    
-    public function izmeniKritikuSubmit(){
+
+    public function izmeniKritikuSubmit() {
         if ((!checkPermission(array('admin'), $this->userRole)) && $this->session->username !== $this->input->post('CreatorUsername')) {
             redirect(route_url(''));
         } else {

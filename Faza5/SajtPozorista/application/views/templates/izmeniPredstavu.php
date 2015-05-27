@@ -15,33 +15,33 @@
 
             <?php echo validation_errors(); ?>
 
-            <?php echo form_open_multipart('predstave/izmeniPredstavu/','',array('PredID' => $predstava['PredID']))?>
+            <?php echo form_open_multipart('predstave/izmeniPredstavu/', '', array('PredID' => $predstava['PredID'])) ?>
             <div class="form-group">
-				<label for="naziv">Naziv<font color="red"> * </font></label>
-				<input type="text" class="form-control" name="naziv" id="naziv" value="<?php echo $predstava['Naziv']; ?>">
-			  </div>
-			  <div class="form-group">
-				<label for="pozID">Pozorište<font color="red"> * </font></label>
-				<select id="pozID" name="pozID" class="form-control">
-				    <?php
-    				    for($i=0; $i<sizeof($pozorista);$i++){
-    				        $selected = '';
-    				        if($pozorista[$i]['PozID'] === $predstava['PozID'])
-    				            $selected = ' selected="selected"';
-    				        echo '<option value="'.$pozorista[$i]['PozID'].'"'.$selected.'>'.$pozorista[$i]['Naziv'].'</option>';
-    				    }
-				    ?>
-				</select>
-			  </div>
-			  <div class="form-group">
-				<label for="glumci">Glumci</label>
-				<textarea class="form-control" id="glumci" name="glumci" rows="3"><?php echo $predstava['Glumci']; ?></textarea>
-			  </div>
-			  <div class="form-group">
-				<label for="reziser">Režiser</label>
-				<input type="text" class="form-control" id="reziser" name="reziser" value="<?php echo $predstava['Reziser']; ?>">
-			  </div>
-			  <div class="row">
+                <label for="naziv">Naziv<font color="red"> * </font></label>
+                <input type="text" class="form-control" name="naziv" id="naziv" value="<?php echo $predstava['Naziv']; ?>">
+            </div>
+            <div class="form-group">
+                <label for="pozID">Pozorište<font color="red"> * </font></label>
+                <select id="pozID" name="pozID" class="form-control">
+                    <?php
+                    for ($i = 0; $i < sizeof($pozorista); $i++) {
+                        $selected = '';
+                        if ($pozorista[$i]['PozID'] === $predstava['PozID'])
+                            $selected = ' selected="selected"';
+                        echo '<option value="' . $pozorista[$i]['PozID'] . '"' . $selected . '>' . $pozorista[$i]['Naziv'] . '</option>';
+                    }
+                    ?>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="glumci">Glumci</label>
+                <textarea class="form-control" id="glumci" name="glumci" rows="3"><?php echo $predstava['Glumci']; ?></textarea>
+            </div>
+            <div class="form-group">
+                <label for="reziser">Režiser</label>
+                <input type="text" class="form-control" id="reziser" name="reziser" value="<?php echo $predstava['Reziser']; ?>">
+            </div>
+            <div class="row">
                 <div class="col-md-6 portfolio-item">
                     <div class="form-group">
                         <label for="slika">Nova slika</label>

@@ -4,7 +4,7 @@
         <div class="row">
 
             <div class="col-lg-12">
-                <h1 class="page-header">Dodaj predstavu</h1>
+                <h1 class="page-header">Dodaj predstavu za pozoriste - <?php echo $NazivPozorista ?></h1>
             </div>
 
         </div>
@@ -21,20 +21,10 @@
             }
             ?>
 
-            <?php echo form_open_multipart('predstave/dodajPredstavu') ?>
+            <?php echo form_open_multipart('predstave/dodajPredstavu','',array('pozID' => $PozID)) ?>
             <div class="form-group">
                 <label for="naziv">Naziv<font color="red"> * </font></label>
                 <input type="text" class="form-control" name="naziv" id="naziv" value="<?php echo set_value('naziv'); ?>">
-            </div>
-            <div class="form-group">
-                <label for="pozID">Pozorište<font color="red"> * </font></label>
-                <select id="pozID" name="pozID" class="form-control">
-                    <?php
-                    for ($i = 0; $i < sizeof($pozorista); $i++) {
-                        echo '<option value="' . $pozorista[$i]['PozID'] . '">' . $pozorista[$i]['Naziv'] . '</option>';
-                    }
-                    ?>
-                </select>
             </div>
             <div class="form-group">
                 <label for="glumci">Glumci</label>

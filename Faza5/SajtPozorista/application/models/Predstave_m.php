@@ -15,7 +15,8 @@ class Predstave_m extends CI_Model {
             'Slika' => $fileName,
             'Username' => $creatorUsername
         );
-        return $this->db->insert('predstava', $data);
+        $this->db->insert('predstava', $data);
+        return $this->db->insert_id();
     }
 
     public function findOne($id) {
@@ -26,6 +27,12 @@ class Predstave_m extends CI_Model {
     public function find() {
         $this->db->select('PredID, Naziv, Slika');
         $query = $this->db->get('predstava');
+        return $query->result_array();
+    }
+    
+    public function findByPozId($PozID) {
+        $this->db->select('PredID, Naziv, Slika');
+        $query = $this->db->get_where('predstava', array('PozID' => $PozID));
         return $query->result_array();
     }
     
