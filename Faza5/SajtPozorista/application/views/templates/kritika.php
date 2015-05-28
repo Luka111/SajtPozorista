@@ -1,5 +1,13 @@
 <div class="container">
     <div class="section">
+        <div class="row">
+
+            <div class="col-lg-12">
+                <h1 class="page-header">Kritika za predstavu: <?php echo '<a href = "'. route_url('predstave/predstava/' . $predstava['PredID']) . '">' . $predstava['Naziv'] . '</a>'; ?></h1>
+                <h3> By <?php echo $Username ?></h3><hr/>
+            </div>
+
+        </div>
         <div class="row ">
 
             <div class="col-lg-12">
@@ -14,13 +22,7 @@
             </div>
 
         </div>
-        <div class="row">
 
-            <div class="col-lg-12">
-
-            </div>
-
-        </div>
         <br>
 
         <div class="row">

@@ -20,6 +20,12 @@ class Komentari_m extends CI_Model {
         $query = $this->db->get_where('komentar', array('PredID' => $predID));
         return $query->result_array();
     }
+    
+    public function findIDs($predID) {
+        $this->db->select('KomID');
+        $query = $this->db->get_where('komentar', array('PredID' => $predID));
+        return $query->result_array();
+    }
 
     public function removeOne($id) {
         $this->db->delete('komentar', array('KomID' => $id));

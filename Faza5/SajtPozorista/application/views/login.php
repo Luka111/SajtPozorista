@@ -14,20 +14,27 @@
             echo "<div>$msg</div><br/>";
         }
         ?>
+        <div class="row">
+            <div class="col-lg-3">
+                <?php echo validation_errors(); ?>
 
-        <?php echo validation_errors(); ?>
+                <?php echo form_open('login/loginUser') ?>
 
-        <?php echo form_open('login/loginUser') ?>
+                <div class="form-group">
+                    <label for="name" align="left">Username <font color="red"> * </font></label><br/>
+                    <input type="text" class="form-control" id="username" name="username" value="<?php echo set_value('username'); ?>" spellcheck="false" maxlength="40" size="40"/>
+                </div>
 
-        <label for="name" align="left">Username <font color="red"> * </font></label><br/>
-        <input type="text" id="username" name="username" value="<?php echo set_value('username'); ?>" spellcheck="false" maxlength="40" size="40"/><br/>
+                <div class="form-group">
+                    <label for="password">Lozinka <font color="red"> * </font></label><br/>
+                    <input type="password" class="form-control" id="password" name="password"  maxlength="40" size="40"/>
+                </div>
 
-        <label for="password">Lozinka <font color="red"> * </font></label><br/>
-        <input type="password" id="password" name="password"  maxlength="40" size="40"/><br/>
+                <br/>
+                <input type="submit" value="Login" name="button" id="create-account" class="button" align="center"/>                                           
 
-        <br/>
-        <input type="submit" value="Login" name="button" id="create-account" class="button" align="center"/>                                           
-
-        <?php echo form_close() ?>
+                <?php echo form_close() ?>
+            </div>
+        </div>
     </div>
 </div>

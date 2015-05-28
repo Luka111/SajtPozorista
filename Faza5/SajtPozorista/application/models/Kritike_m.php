@@ -26,6 +26,12 @@ class Kritike_m extends CI_Model{
         $query = $this->db->get_where('kritika', array('PredID' => $predID));
         return $query->result_array();
     }
+       
+    public function findIDs($predID) {
+        $this->db->select('KritID');
+        $query = $this->db->get_where('kritika', array('PredID' => $predID));
+        return $query->result_array();
+    }
 
     public function removeOne($id) {
         $this->db->delete('kritika', array('KritID' => $id));

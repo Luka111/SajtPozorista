@@ -29,14 +29,20 @@ class Predstave_m extends CI_Model {
         $query = $this->db->get('predstava');
         return $query->result_array();
     }
-    
+
     public function findByPozId($PozID) {
         $this->db->select('PredID, Naziv, Slika');
         $query = $this->db->get_where('predstava', array('PozID' => $PozID));
         return $query->result_array();
     }
-    
-    public function findAktuelnePredstave(){
+
+    public function findIDsByPozId($PozID) {
+        $this->db->select('PredID');
+        $query = $this->db->get_where('predstava', array('PozID' => $PozID));
+        return $query->result_array();
+    }
+
+    public function findAktuelnePredstave() {
         $this->db->select('PredID, Naziv, Slika');
         $this->db->order_by('Naziv', 'RANDOM');
         $this->db->limit(3);
@@ -44,7 +50,26 @@ class Predstave_m extends CI_Model {
         return $query->result_array();
     }
 
-    public function removeOne($id) {
+    public function obrisiPredstavu($PredID, $userRole, $PozID = NULL) {
+        if (!checkPermission(array('moderator', 'admin'), $userRole)) {
+            redirect(route_url(''));
+        } else {
+            $KomIDs = $this->komentari_m->findIDs($PredID);
+            foreach ($KomIDs as $KomID) {
+                $this->komentari_m->removeOne($KomID['KomID']);
+            }
+            $KritIDs = $this->kritike_m->findIDs($PredID);
+            foreach ($KritIDs as $KritID) {
+                $this->kritike_m->removeOne($KritID['KritID']);
+            }
+            $this->removeOne($PredID);
+            if ($PozID) {
+                redirect('pozorista/pozoriste/' . $PozID);
+            }
+        }
+    }
+
+    private function removeOne($id) {
         $this->db->delete('predstava', array('PredID' => $id));
     }
 
@@ -55,7 +80,7 @@ class Predstave_m extends CI_Model {
             'Glumci' => $this->input->post('glumci'),
             'Reziser' => $this->input->post('reziser')
         );
-        if($fileName){
+        if ($fileName) {
             $data['Slika'] = $fileName;
         }
         $this->db->where('PredID', $this->input->post('PredID'));

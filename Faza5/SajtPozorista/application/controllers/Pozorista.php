@@ -118,6 +118,12 @@ class Pozorista extends Base {
         if (!checkPermission(array('moderator', 'admin'), $this->userRole)) {
             redirect(route_url(''));
         } else {
+            $PredIDs = $this->predstave_m->findIDsByPozId($id);
+            $this->load->model('komentari_m');
+            $this->load->model('kritike_m');
+            foreach($PredIDs as $PredID){
+                $this->predstave_m->obrisiPredstavu($PredID['PredID'], $this->userRole);
+            }
             $this->pozorista_m->removeOne($id);
             redirect('pozorista/view');
         }

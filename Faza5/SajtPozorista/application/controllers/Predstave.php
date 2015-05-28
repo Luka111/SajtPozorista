@@ -142,12 +142,7 @@ class Predstave extends Base {
     }
 
     public function obrisi($id, $PozID) {
-        if (!checkPermission(array('moderator', 'admin'), $this->userRole)) {
-            redirect(route_url(''));
-        } else {
-            $this->predstave_m->removeOne($id);
-            redirect('pozorista/pozoriste/' . $PozID);
-        }
+        $this->predstave_m->obrisiPredstavu($id, $this->userRole, $PozID);
     }
 
     /* Replacing with AJAX version
@@ -211,6 +206,7 @@ class Predstave extends Base {
             $this->viewIndicator = 'ViewKritika';
             $data['kritika'] = $this->kritike_m->findOne($id);
             $data['PredID'] = $predID;
+            $data['predstava'] = $this->predstave_m->findOne($predID);
             $this->view($data);
         }
     }
