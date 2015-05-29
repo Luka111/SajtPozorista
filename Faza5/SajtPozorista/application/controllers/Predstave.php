@@ -65,7 +65,7 @@ class Predstave extends Base {
         $this->view($data);
     }
 
-    public function dodaj($PozID, $NazivPozorista) {
+    public function dodaj($PozID, $NazivPozorista, $data = NULL) {
         if (!checkPermission(array('moderator', 'admin'), $this->userRole)) {
             redirect(route_url(''));
         } else {
@@ -82,7 +82,7 @@ class Predstave extends Base {
         } else {
             $this->validation();
             if ($this->form_validation->run() === FALSE) {
-                $this->dodaj();
+                $this->dodaj($this->input->post('pozID'),$this->input->post('NazivPozorista'));
             } else {
                 $this->loadUploadLibrary('predstave/');
                 //Uploading image is NOT required!
@@ -91,14 +91,14 @@ class Predstave extends Base {
                 //More info https://blog.smalldo.gs/2013/03/optional-file-upload-field-codeigniter/
                 if ($_FILES['slika'] && ($_FILES['slika']['size'] > 0) && !$this->upload->do_upload('slika')) {
                     $data = array('error' => $this->upload->display_errors());
-                    $this->dodaj($data);
+                    $this->dodaj($this->input->post('pozID'),$this->input->post('NazivPozorista'),$data);
                 } else {
                     $image = $this->upload->data();
                     $PredID = $this->predstave_m->insert($this->session->username, $image['file_name']);
                     if ($PredID) {
                         redirect(route_url('predstave/predstava/' . $PredID));
                     } else {
-                        $this->dodaj();
+                        $this->dodaj($this->input->post('pozID'),$this->input->post('NazivPozorista'));
                     }
                 }
             }

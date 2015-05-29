@@ -21,7 +21,7 @@
             }
             ?>
 
-            <?php echo form_open_multipart('predstave/dodajPredstavu','',array('pozID' => $PozID)) ?>
+            <?php echo form_open_multipart('predstave/dodajPredstavu','',array('pozID' => $PozID, 'NazivPozorista' => $NazivPozorista)) ?>
             <div class="form-group">
                 <label for="naziv">Naziv<font color="red"> * </font></label>
                 <input type="text" class="form-control" name="naziv" id="naziv" value="<?php echo set_value('naziv'); ?>">
