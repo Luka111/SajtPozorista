@@ -18,7 +18,20 @@
             <?php echo form_open_multipart('predstave/izmeniPredstavu/', '', array('PredID' => $predstava['PredID'])) ?>
             <div class="form-group">
                 <label for="naziv">Naziv<font color="red"> * </font></label>
-                <input type="text" class="form-control" name="naziv" id="naziv" value="<?php echo $predstava['Naziv']; ?>">
+                <input type="text" class="form-control" name="naziv" id="naziv" value="<?php echo $predstava['Naziv']; ?>" maxlength="20">
+            </div>
+            <div class="form-group">
+                <label for="pozID">Pozorište<font color="red"> * </font></label>
+                <select id="pozID" name="pozID" class="form-control">
+                    <?php
+                    for ($i = 0; $i < sizeof($pozorista); $i++) {
+                        $selected = '';
+                        if ($pozorista[$i]['PozID'] === $predstava['PozID'])
+                            $selected = ' selected="selected"';
+                        echo '<option value="' . $pozorista[$i]['PozID'] . '"' . $selected . '>' . $pozorista[$i]['Naziv'] . '</option>';
+                    }
+                    ?>
+                </select>
             </div>
             <div class="form-group">
                 <label for="glumci">Glumci</label>
@@ -26,7 +39,7 @@
             </div>
             <div class="form-group">
                 <label for="reziser">Režiser</label>
-                <input type="text" class="form-control" id="reziser" name="reziser" value="<?php echo $predstava['Reziser']; ?>">
+                <input type="text" class="form-control" id="reziser" name="reziser" value="<?php echo $predstava['Reziser']; ?>" maxlength="30">
             </div>
             <div class="row">
                 <div class="col-md-6 portfolio-item">

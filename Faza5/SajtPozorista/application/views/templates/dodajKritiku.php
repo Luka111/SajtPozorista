@@ -15,7 +15,7 @@
             <?php echo form_open('predstave/dodajKritikuSubmit', '', array('PredID' => $predstava['PredID'])) ?>
             <div class="form-group">
                 <label for="naslov">Naslov<font color="red"> * </font></label>
-                <input type="text" class="form-control" name="naslov" id="naslov" value="<?php echo set_value('naslov'); ?>">
+                <input type="text" class="form-control" name="naslov" id="naslov" value="<?php echo set_value('naslov'); ?>" maxlength="30">
             </div>
             <div class="form-group">
                 <label for="sadrzaj">Sadrzaj<font color="red"> * </font></label>

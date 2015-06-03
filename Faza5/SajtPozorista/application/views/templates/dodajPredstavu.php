@@ -21,10 +21,10 @@
             }
             ?>
 
-            <?php echo form_open_multipart('predstave/dodajPredstavu','',array('pozID' => $PozID, 'NazivPozorista' => $NazivPozorista)) ?>
+            <?php echo form_open_multipart('predstave/dodajPredstavu','',array('pozID' => $PozID)) ?>
             <div class="form-group">
                 <label for="naziv">Naziv<font color="red"> * </font></label>
-                <input type="text" class="form-control" name="naziv" id="naziv" value="<?php echo set_value('naziv'); ?>">
+                <input type="text" class="form-control" name="naziv" id="naziv" value="<?php echo set_value('naziv'); ?>" maxlength="20">
             </div>
             <div class="form-group">
                 <label for="glumci">Glumci</label>
@@ -32,7 +32,7 @@
             </div>
             <div class="form-group">
                 <label for="reziser">Režiser</label>
-                <input type="text" class="form-control" id="reziser" name="reziser" value="<?php echo set_value('reziser'); ?>">
+                <input type="text" class="form-control" id="reziser" name="reziser" value="<?php echo set_value('reziser'); ?>" maxlength="30">
             </div>
             <div class="form-group">
                 <label for="slika">Slika</label>

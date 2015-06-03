@@ -24,7 +24,7 @@
             <?php echo form_open_multipart('vesti/dodajVest') ?>
             <div class="form-group">
                 <label for="naslov">Naslov <font color="red"> * </font></label>
-                <input type="text" id="naslov" name="naslov" value="<?php echo set_value('naslov'); ?>" class="form-control">
+                <input type="text" id="naslov" name="naslov" value="<?php echo set_value('naslov'); ?>" class="form-control" maxlength="20">
             </div>
             <div class="form-group">
                 <label for="sadrzaj">Sadrzaj <font color="red"> * </font></label>
