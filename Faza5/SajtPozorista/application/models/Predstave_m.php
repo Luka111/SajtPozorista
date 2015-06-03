@@ -75,7 +75,6 @@ class Predstave_m extends CI_Model {
 
     public function update($fileName) {
         $data = array(
-            'PozID' => $this->input->post('pozID'),
             'Naziv' => $this->input->post('naziv'),
             'Glumci' => $this->input->post('glumci'),
             'Reziser' => $this->input->post('reziser')
