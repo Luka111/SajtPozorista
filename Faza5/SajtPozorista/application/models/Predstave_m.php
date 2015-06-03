@@ -7,6 +7,10 @@ class Predstave_m extends CI_Model {
     }
 
     public function insert($creatorUsername, $fileName) {
+        if (!$creatorUsername || !$this->input->post('pozID') || !$this->input->post('naziv')
+        ) {
+            return FALSE;
+        }
         $data = array(
             'PozID' => $this->input->post('pozID'),
             'Naziv' => $this->input->post('naziv'),
@@ -20,6 +24,9 @@ class Predstave_m extends CI_Model {
     }
 
     public function findOne($id) {
+        if (!$id) {
+            return FALSE;
+        }
         $query = $this->db->get_where('predstava', array('PredID' => $id));
         return $query->row_array();
     }
@@ -31,12 +38,18 @@ class Predstave_m extends CI_Model {
     }
 
     public function findByPozId($PozID) {
+        if (!$PozID) {
+            return FALSE;
+        }
         $this->db->select('PredID, Naziv, Slika');
         $query = $this->db->get_where('predstava', array('PozID' => $PozID));
         return $query->result_array();
     }
 
     public function findIDsByPozId($PozID) {
+        if (!$PozID) {
+            return FALSE;
+        }
         $this->db->select('PredID');
         $query = $this->db->get_where('predstava', array('PozID' => $PozID));
         return $query->result_array();
@@ -51,6 +64,9 @@ class Predstave_m extends CI_Model {
     }
 
     public function obrisiPredstavu($PredID, $userRole, $PozID = NULL) {
+        if (!$PredID || !$userRole) {
+            return FALSE;
+        }
         if (!checkPermission(array('moderator', 'admin'), $userRole)) {
             redirect(route_url(''));
         } else {
