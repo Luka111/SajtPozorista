@@ -31,7 +31,7 @@
                 </div>
 
                 <br/>
-                <input type="submit" value="Login" name="button" id="create-account" class="button" align="center"/>                                           
+                <input type="submit" value="Login" name="button" id="login" class="button" align="center"/>                                           
 
                 <?php echo form_close() ?>
             </div>

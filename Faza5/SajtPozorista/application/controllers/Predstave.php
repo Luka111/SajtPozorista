@@ -37,12 +37,8 @@ class Predstave extends Base {
                 $this->load->view('templates/kritike', $dataKritika);
             }
         } elseif ($this->viewIndicator === 'Insert') {
-            /* $data['pozorista'] = $this->predstave_m->find(); */
-            $data['pozorista'] = array(0 => array("PozID" => "1", "Naziv" => "Srpsko Narodno Pozoriste"), 1 => array("PozID" => "2", "Naziv" => "Neko Drugo Pozoriste"));
             $this->load->view('templates/dodajPredstavu', $data);
         } elseif ($this->viewIndicator === 'Update') {
-            /* $data['pozorista'] = $this->predstave_m->find(); */
-            $data['pozorista'] = array(0 => array("PozID" => "1", "Naziv" => "Srpsko Narodno Pozoriste"), 1 => array("PozID" => "2", "Naziv" => "Neko Drugo Pozoriste"));
             $this->load->view('templates/izmeniPredstavu', $data);
         } elseif ($this->viewIndicator === 'InsertKritika') {
             $data['predstava'] = $this->predstave_m->findOne($data['PredID']);

@@ -21,19 +21,6 @@
                 <input type="text" class="form-control" name="naziv" id="naziv" value="<?php echo $predstava['Naziv']; ?>">
             </div>
             <div class="form-group">
-                <label for="pozID">Pozorište<font color="red"> * </font></label>
-                <select id="pozID" name="pozID" class="form-control">
-                    <?php
-                    for ($i = 0; $i < sizeof($pozorista); $i++) {
-                        $selected = '';
-                        if ($pozorista[$i]['PozID'] === $predstava['PozID'])
-                            $selected = ' selected="selected"';
-                        echo '<option value="' . $pozorista[$i]['PozID'] . '"' . $selected . '>' . $pozorista[$i]['Naziv'] . '</option>';
-                    }
-                    ?>
-                </select>
-            </div>
-            <div class="form-group">
                 <label for="glumci">Glumci</label>
                 <textarea class="form-control" id="glumci" name="glumci" rows="3"><?php echo $predstava['Glumci']; ?></textarea>
             </div>
