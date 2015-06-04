@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head profile="http://selenium-ide.openqa.org/profiles/test-case">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="selenium.base" href="http://localhost/SajtPozorista/index.php/" />
+<title>Login + izmena kritike</title>
+</head>
+<body>
+<table cellpadding="1" cellspacing="1" border="1">
+<thead>
+<tr><td rowspan="1" colspan="3">Login + izmena kritike</td></tr>
+</thead><tbody>
+<tr>
+	<td>open</td>
+	<td>/SajtPozorista/index.php/</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=Login</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=password</td>
+	<td>admin123</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=username</td>
+	<td>LukaAdmin</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=login</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=Pozorišta</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>css=h3</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>css=a &gt; h3</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=Kako politicka elita dozivljava umetnost</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>xpath=(//button[@type='button'])[3]</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=naslov</td>
+	<td>Kako politicka elita dozivljava umetnost TEST 2</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=sadrzaj</td>
+	<td>Scena iz predstave &quot;Bajka o pozorištu&quot; je odlična komedija. Iako naslovljen kao bajka, ovaj komad koji se igra u &quot;Zvezdara teatru&quot;, na žalost, mnogo više korespondira sa stvarnošću od bajki koje znamo. Položaj kulture, a pre svega pozorišta, i kako kulturu i umetnost doživljava naša politička elita su glavne teme kojima se ova predstava bavi. TEST TEST 2</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=dodajKritiku</td>
+	<td></td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>link=Logout</td>
+	<td></td>
+</tr>
+</tbody></table>
+</body>
+</html>
