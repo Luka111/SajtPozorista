@@ -9,13 +9,27 @@
             </li>
 
         </ol>
+        <h2>Test vesti</h2>
+        <ol>
+            <li>
+                <h3><a href="<?php echo route_url('tests/testVestiModel') ?>">Test Vesti model</a></h3><hr>
+            </li>
+ 
+        </ol>
+        <h2>Test pozorišta</h2>
+        <ol>
+            <li>
+                <h3><a href="<?php echo route_url('tests/testPozoristaModel') ?>">Test Pozorišta model</a></h3><hr>
+            </li>
+ 
+        </ol>
         <h2>Test helper functions</h2>
         <ol>
             <li>
                 <h3><a href="<?php echo route_url('tests/testHelperFunctions') ?>">Test helper functions</a></h3><hr>
             </li>
         </ol>
-
+        
 
     </div>
 </div>

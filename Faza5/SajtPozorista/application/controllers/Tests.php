@@ -58,6 +58,118 @@ class Tests extends Base {
         $this->viewIndicator = 'testPredstaveModel';
         $this->view();
     }
+    
+    
+    public  function testPozoristaModel(){
+        $expected_result = 'is_false';
+        
+        $test = $this->pozorista_m->insert(null, null);
+        $test_name = 'Insert with no creator username';
+        $this->unit->run($test, $expected_result, $test_name, 'Insert should return FALSE if no username passed');
+        
+        $_POST['Naziv'] = null;
+        $test = $this->pozorista_m->insert('LukaAdmin', null);
+        $test_name = 'Insert with no Naziv in POST';
+        $this->unit->run($test, $expected_result, $test_name, 'Insert should return FALSE if no Naziv in POST');
+        
+         $_POST['Adresa'] = null;
+        $test = $this->pozorista_m->insert('LukaAdmin', null);
+        $test_name = 'Insert with no Adresa in POST';
+        $this->unit->run($test, $expected_result, $test_name, 'Insert should return FALSE if no Adresa in POST');
+        
+         $_POST['Telefon'] = null;
+        $test = $this->pozorista_m->insert('LukaAdmin', null);
+        $test_name = 'Insert with no Telefon in POST';
+        $this->unit->run($test, $expected_result, $test_name, 'Insert should return FALSE if no Telefon in POST');
+        
+         $_POST['Email'] = null;
+        $test = $this->pozorista_m->insert('LukaAdmin', null);
+        $test_name = 'Insert with no Email in POST';
+        $this->unit->run($test, $expected_result, $test_name, 'Insert should return FALSE if no Email in POST');
+        
+        $_POST['Opis'] = null;
+        $test = $this->pozorista_m->insert('LukaAdmin', null);
+        $test_name = 'Insert with no Opis in POST';
+        $this->unit->run($test, $expected_result, $test_name, 'Insert should return FALSE if no Opis in POST');
+        
+        $test = $this->pozorista_m->findOne(null);
+        $test_name = 'findOne with no id';
+        $this->unit->run($test, $expected_result, $test_name, 'findOne should return FALSE if no id passed');
+        
+        $test = $this->pozorista_m->findNaziv(null);
+        $test_name = 'findNaziv with no id';
+        $this->unit->run($test, $expected_result, $test_name, 'findNaziv should return FALSE if no id passed');
+        
+        $test = $this->pozorista_m->removeOne(null);
+        $test_name = 'removeOne with no PozID';
+        $this->unit->run($test, $expected_result, $test_name, 'removeOne should return FALSE if no PozID passed');
+        
+        
+        $_POST['Naziv'] = null;
+        $test = $this->pozorista_m->update(null);
+        $test_name = 'Update with no Naziv in POST';
+        $this->unit->run($test, $expected_result, $test_name, 'Update should return FALSE if no Naziv in POST');
+        
+         $_POST['Adresa'] = null;
+        $test = $this->pozorista_m->update(null);
+        $test_name = 'Update with no Adresa in POST';
+        $this->unit->run($test, $expected_result, $test_name, 'Update should return FALSE if no Adresa in POST');
+        
+         $_POST['Telefon'] = null;
+        $test = $this->pozorista_m->update(null);
+        $test_name = 'Update with no Telefon in POST';
+        $this->unit->run($test, $expected_result, $test_name, 'Update should return FALSE if no Telefon in POST');
+        
+         $_POST['Email'] = null;
+        $test = $this->pozorista_m->update(null);
+        $test_name = 'Update with no Email in POST';
+        $this->unit->run($test, $expected_result, $test_name, 'Update should return FALSE if no Email in POST');
+        
+        $_POST['Opis'] = null;
+        $test = $this->pozorista_m->update(null);
+        $test_name = 'Update with no Opis in POST';
+        $this->unit->run($test, $expected_result, $test_name, 'Update should return FALSE if no Opis in POST');
+        
+    }
+    
+    public function testVestiModel() {
+        $expected_result = 'is_false';
+ 
+        $test = $this->vesti_m->insert(null, null);
+        $test_name = 'Insert with no creator username';
+        $this->unit->run($test, $expected_result, $test_name, 'Insert should return FALSE if no username passed');
+ 
+        $_POST['Naslov'] = null;
+        $test = $this->vesti_m->insert('LukaAdmin', null);
+        $test_name = 'Insert with no Naslov in POST';
+        $this->unit->run($test, $expected_result, $test_name, 'Insert should return FALSE if no Naslov in POST');
+ 
+        $_POST['Sadrzaj'] = null;
+        $test = $this->vesti_m->insert('LukaAdmin', null);
+        $test_name = 'Insert with no Sadrzaj in POST';
+        $this->unit->run($test, $expected_result, $test_name, 'Insert should return FALSE if no Sadrzaj in POST');
+ 
+        $test = $this->vesti_m->findOne(null);
+        $test_name = 'findOne with no id';
+        $this->unit->run($test, $expected_result, $test_name, 'findOne should return FALSE if no id passed');
+ 
+        $test = $this->vesti_m->removeOne(null);
+        $test_name = 'removeOne with no VestID';
+        $this->unit->run($test, $expected_result, $test_name, 'removeOne should return FALSE if no VestID passed');
+ 
+        $_POST['Naslov'] = null;
+        $test = $this->vesti_m->update(null);
+        $test_name = 'Update with no Naslov in POST';
+        $this->unit->run($test, $expected_result, $test_name, 'Update should return FALSE if no Naslov in POST');
+ 
+        $_POST['Sadrzaj'] = null;
+        $test = $this->vesti_m->update(null);
+        $test_name = 'Update with no Sadrzaj in POST';
+        $this->unit->run($test, $expected_result, $test_name, 'Update should return FALSE if no Sadrzaj in POST');
+ 
+        $this->viewIndicator = 'testVestiModel';
+        $this->view();
+    }
 
     public function testHelperFunctions() {
 
