@@ -3,13 +3,13 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head profile="http://selenium-ide.openqa.org/profiles/test-case">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<link rel="selenium.base" href="http://localhost/SajtPozorista/index.php/" />
-<title>Login + dodavanje pozorista</title>
+<link rel="selenium.base" href="http://localhost/" />
+<title>LogIn + registracija_korisnika</title>
 </head>
 <body>
 <table cellpadding="1" cellspacing="1" border="1">
 <thead>
-<tr><td rowspan="1" colspan="3">Login + dodavanje pozorista</td></tr>
+<tr><td rowspan="1" colspan="3">LogIn + registracija_korisnika</td></tr>
 </thead><tbody>
 <tr>
 	<td>open</td>
@@ -18,47 +18,62 @@
 </tr>
 <tr>
 	<td>clickAndWait</td>
-	<td>link=Pozorišta</td>
-	<td></td>
-</tr>
-<tr>
-	<td>clickAndWait</td>
-	<td>xpath=(//button[@type='button'])[2]</td>
+	<td>link=Register</td>
 	<td></td>
 </tr>
 <tr>
 	<td>type</td>
-	<td>id=naziv</td>
-	<td>Test pozoriste</td>
+	<td>id=username</td>
+	<td>andra</td>
 </tr>
 <tr>
 	<td>type</td>
-	<td>id=adresa</td>
-	<td>Test Adresa</td>
+	<td>id=password</td>
+	<td>andra123</td>
 </tr>
 <tr>
 	<td>type</td>
-	<td>id=naziv</td>
-	<td>Test Pozoriste</td>
-</tr>
-<tr>
-	<td>type</td>
-	<td>id=telefon</td>
-	<td>01183788378</td>
+	<td>id=passwordagain</td>
+	<td>andra123</td>
 </tr>
 <tr>
 	<td>type</td>
 	<td>id=email</td>
-	<td>test@test</td>
+	<td>andra@gmail.com</td>
 </tr>
 <tr>
 	<td>type</td>
-	<td>id=opis</td>
-	<td>Test opis</td>
+	<td>id=telefon</td>
+	<td>6666666</td>
+</tr>
+<tr>
+	<td>select</td>
+	<td>id=birthyear</td>
+	<td>label=1955</td>
+</tr>
+<tr>
+	<td>click</td>
+	<td>id=posta</td>
+	<td></td>
 </tr>
 <tr>
 	<td>clickAndWait</td>
-	<td>id=dodajPozoriste</td>
+	<td>id=create-account</td>
+	<td></td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=username</td>
+	<td>andra</td>
+</tr>
+<tr>
+	<td>type</td>
+	<td>id=password</td>
+	<td>andra123</td>
+</tr>
+<tr>
+	<td>clickAndWait</td>
+	<td>id=login</td>
 	<td></td>
 </tr>
 <tr>

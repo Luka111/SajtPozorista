@@ -13,6 +13,8 @@ class Tests extends Base {
         $this->load->model('pozorista_m');
         $this->load->model('vesti_m');
         $this->load->model('kritike_m');
+        $this->load->model('komentari_m');
+        $this->load->model('user');
     }
 
     protected function obrada($data = NULL) {
@@ -101,8 +103,8 @@ class Tests extends Base {
         $this->unit->run($test, $expected_result, $test_name, 'findOne should return FALSE if no id passed');
 
         $test = $this->kritike_m->findIDs(null);
-        $test_name = 'findOne with no KritID';
-        $this->unit->run($test, $expected_result, $test_name, 'findOne should return FALSE if no KritID passed');
+        $test_name = 'findIDs with no KritID';
+        $this->unit->run($test, $expected_result, $test_name, 'findIDs should return FALSE if no predID passed');
 
         $test = $this->kritike_m->removeOne(null);
         $test_name = 'removeOne with no KritID';
@@ -243,6 +245,99 @@ class Tests extends Base {
         $this->unit->run($test, $expected_result, $test_name, 'Update should return FALSE if no Sadrzaj in POST');
 
         $this->viewIndicator = 'testVestiModel';
+        $this->view();
+    }
+    
+    public function testKomentariModel() {
+        $expected_result = 'is_false';
+
+        $test = $this->komentari_m->insert(null, '3');
+        $test_name = 'Insert with no creator username';
+        $this->unit->run($test, $expected_result, $test_name, 'Insert should return FALSE if no username passed');
+
+        $test = $this->komentari_m->insert('LukaAdmin', null);
+        $test_name = 'Insert with no predID';
+        $this->unit->run($test, $expected_result, $test_name, 'Insert should return FALSE if no predID passed');
+        
+        $_POST['Tekst'] = null;
+        $test = $this->komentari_m->insert('LukaAdmin', 'smth');
+        $test_name = 'Insert with no naslov in POST';
+        $this->unit->run($test, $expected_result, $test_name, 'Insert should return FALSE if no Tekst in POST');
+
+        $test = $this->komentari_m->find(null);
+        $test_name = 'find with no predID';
+        $this->unit->run($test, $expected_result, $test_name, 'findOne should return FALSE if no predID passed');
+
+        $test = $this->komentari_m->findIDs(null);
+        $test_name = 'findIDs with no predID';
+        $this->unit->run($test, $expected_result, $test_name, 'findIDs should return FALSE if no PredID passed');
+
+        $test = $this->komentari_m->removeOne(null);
+        $test_name = 'removeOne with no id';
+        $this->unit->run($test, $expected_result, $test_name, 'removeOne should return FALSE if no id passed');
+
+        $this->viewIndicator = 'testKritikeModel';
+        $this->view();
+    }
+    
+        public function testUserModel() {
+        $expected_result = 'is_false';
+
+        $_POST['username'] = null;
+        $test = $this->user->insert();
+        $test_name = 'Insert with no username in POST';
+        $this->unit->run($test, $expected_result, $test_name, 'Insert should return FALSE if no username in POST');
+
+        $_POST['username'] = 'LukaAdmin';
+        $_POST['password'] = null;
+        $test = $this->user->insert();
+        $test_name = 'Insert with no password in POST';
+        $this->unit->run($test, $expected_result, $test_name, 'Insert should return FALSE if no password in POST');
+
+        $_POST['password'] = 'nesto123';
+        $_POST['telefon'] = null;
+        $test = $this->user->insert();
+        $test_name = 'Insert with no Telefon in POST';
+        $this->unit->run($test, $expected_result, $test_name, 'Insert should return FALSE if no Telefon in POST');
+
+        $_POST['telefon'] = '0112412345';
+        $_POST['email'] = null;
+        $test = $this->user->insert();
+        $test_name = 'Insert with no Email in POST';
+        $this->unit->run($test, $expected_result, $test_name, 'Insert should return FALSE if no Email in POST');
+
+        $_POST['email'] = 'da@ne.com';
+        $_POST['role'] = null;
+        $test = $this->user->insert();
+        $test_name = 'Insert with no Role in POST';
+        $this->unit->run($test, $expected_result, $test_name, 'Insert should return FALSE if no Role in POST');
+        
+        $_POST['role'] = 'admin';
+        $_POST['posta'] = null;
+        $test = $this->user->insert();
+        $test_name = 'Insert with no Posta in POST';
+        $this->unit->run($test, $expected_result, $test_name, 'Insert should return FALSE if no Posta in POST');
+
+        $_POST['posta'] = 'on';
+        $_POST['birthyear'] = null;
+        $test = $this->user->insert();
+        $test_name = 'Insert with no Birthyear in POST';
+        $this->unit->run($test, $expected_result, $test_name, 'Insert should return FALSE if no Birthyear in POST');
+
+        $_POST['username'] = null;
+        $test = $this->user->findOne();
+        $test_name = 'findOne with no username in POST';
+        $this->unit->run($test, $expected_result, $test_name, 'findIDs should return FALSE if no username in POST');
+
+        $test = $this->user->removeOne(null);
+        $test_name = 'removeOne with no username';
+        $this->unit->run($test, $expected_result, $test_name, 'removeOne should return FALSE if no username passed');
+        
+        $test = $this->user->makeSession(null);
+        $test_name = 'makeSession with no userData';
+        $this->unit->run($test, $expected_result, $test_name, 'removeOne should return FALSE if no userData passed');
+
+        $this->viewIndicator = 'testKritikeModel';
         $this->view();
     }
 

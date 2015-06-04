@@ -8,9 +8,9 @@
 <body>
 <table id="suiteTable" cellpadding="1" cellspacing="1" border="1" class="selenium"><tbody>
 <tr><td><b>Test Suite</b></td></tr>
-<tr><td><a href="dodavanje_pozorista.html">Login + Dodavanje kritike</a></td></tr>
-<tr><td><a href="izmena_pozorista.html">Login + Izmena kritike</a></td></tr>
-<tr><td><a href="brisanje_pozorista.html">Login + Obriši kritiku</a></td></tr>
+<tr><td><a href="dodavanje_kritika.html">dodavanje_kritika</a></td></tr>
+<tr><td><a href="izmena_kritika.html">izmena_kritika</a></td></tr>
+<tr><td><a href="brisanje_kritika.html">brisanje_kritika</a></td></tr>
 </tbody></table>
 </body>
 </html>
