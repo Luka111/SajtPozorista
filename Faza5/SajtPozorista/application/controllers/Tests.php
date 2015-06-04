@@ -12,6 +12,7 @@ class Tests extends Base {
         $this->load->model('predstave_m');
         $this->load->model('pozorista_m');
         $this->load->model('vesti_m');
+        $this->load->model('kritike_m');
     }
 
     protected function obrada($data = NULL) {
@@ -32,13 +33,13 @@ class Tests extends Base {
         $this->unit->run($test, $expected_result, $test_name, 'Insert should return FALSE if no username passed');
 
         $_POST['pozID'] = null;
-        $test = $this->predstave_m->insert('LukaAdmin', null);
+        $test = $this->predstave_m->insert('LukaAdmin', 'smth');
         $test_name = 'Insert with no pozID in POST';
         $this->unit->run($test, $expected_result, $test_name, 'Insert should return FALSE if no pozID in POST');
 
         $_POST['pozID'] = '3';
         $_POST['naziv'] = null;
-        $test = $this->predstave_m->insert('LukaAdmin', null);
+        $test = $this->predstave_m->insert('LukaAdmin', 'smth');
         $test_name = 'Insert with no naziv in POST';
         $this->unit->run($test, $expected_result, $test_name, 'Insert should return FALSE if no naziv in POST');
 
@@ -59,21 +60,70 @@ class Tests extends Base {
         $this->unit->run($test, $expected_result, $test_name, 'obrisiPredstavu should return FALSE if no userRole passed');
 
         $_POST['pozID'] = null;
-        $test = $this->predstave_m->update('LukaAdmin', null);
+        $test = $this->predstave_m->update('LukaAdmin', 'smth');
         $test_name = 'Update with no pozID in POST';
         $this->unit->run($test, $expected_result, $test_name, 'Update should return FALSE if no pozID in POST');
 
         $_POST['pozID'] = '3';
         $_POST['naziv'] = null;
-        $test = $this->predstave_m->update('LukaAdmin', null);
+        $test = $this->predstave_m->update('LukaAdmin', 'smth');
         $test_name = 'Update with no naziv in POST';
         $this->unit->run($test, $expected_result, $test_name, 'Update should return FALSE if no naziv in POST');
-        
+
         $this->viewIndicator = 'testPredstaveModel';
         $this->view();
     }
 
+    public function testKritikeModel() {
+        $expected_result = 'is_false';
+
+        $test = $this->kritike_m->insert(null, '3');
+        $test_name = 'Insert with no creator username';
+        $this->unit->run($test, $expected_result, $test_name, 'Insert should return FALSE if no username passed');
+
+        $test = $this->kritike_m->insert('LukaAdmin', null);
+        $test_name = 'Insert with no predID';
+        $this->unit->run($test, $expected_result, $test_name, 'Insert should return FALSE if no predID passed');
+        
+        $_POST['naslov'] = null;
+        $test = $this->kritike_m->insert('LukaAdmin', 'smth');
+        $test_name = 'Insert with no naslov in POST';
+        $this->unit->run($test, $expected_result, $test_name, 'Insert should return FALSE if no naslov in POST');
+
+        $_POST['naslov'] = 'Neki naziv kritike';
+        $_POST['sadrzaj'] = null;
+        $test = $this->kritike_m->insert('LukaAdmin', 'smth');
+        $test_name = 'Insert with no sadrzaj in POST';
+        $this->unit->run($test, $expected_result, $test_name, 'Insert should return FALSE if no Sadrzaj in POST');
+
+        $test = $this->kritike_m->findOne(null);
+        $test_name = 'findOne with no id';
+        $this->unit->run($test, $expected_result, $test_name, 'findOne should return FALSE if no id passed');
+
+        $test = $this->kritike_m->findIDs(null);
+        $test_name = 'findOne with no KritID';
+        $this->unit->run($test, $expected_result, $test_name, 'findOne should return FALSE if no KritID passed');
+
+        $test = $this->kritike_m->removeOne(null);
+        $test_name = 'removeOne with no KritID';
+        $this->unit->run($test, $expected_result, $test_name, 'removeOne should return FALSE if no KritID passed');
+
+        $_POST['naslov'] = null;
+        $test = $this->kritike_m->update('smth');
+        $test_name = 'Update with no naslov in POST';
+        $this->unit->run($test, $expected_result, $test_name, 'Update should return FALSE if no naslov in POST');
+
+        $_POST['sadrzaj'] = null;
+        $test = $this->kritike_m->update('smth');
+        $test_name = 'Update with no sadrzaj in POST';
+        $this->unit->run($test, $expected_result, $test_name, 'Update should return FALSE if no sadrzaj in POST');
+
+        $this->viewIndicator = 'testKritikeModel';
+        $this->view();
+    }
+
     public function testPozoristaModel() {
+
         $expected_result = 'is_false';
 
         $test = $this->pozorista_m->insert(null, 'smth');
@@ -87,25 +137,25 @@ class Tests extends Base {
 
         $_POST['naziv'] = 'Poz1';
         $_POST['adresa'] = null;
-        $test = $this->pozorista_m->insert('LukaAdmin', null);
+        $test = $this->pozorista_m->insert('LukaAdmin', 'smth');
         $test_name = 'Insert with no Adresa in POST';
         $this->unit->run($test, $expected_result, $test_name, 'Insert should return FALSE if no Adresa in POST');
 
         $_POST['adresa'] = 'Milana Rakica 1';
         $_POST['telefon'] = null;
-        $test = $this->pozorista_m->insert('LukaAdmin', null);
+        $test = $this->pozorista_m->insert('LukaAdmin', 'smth');
         $test_name = 'Insert with no Telefon in POST';
         $this->unit->run($test, $expected_result, $test_name, 'Insert should return FALSE if no Telefon in POST');
 
         $_POST['telefon'] = '0112412345';
         $_POST['email'] = null;
-        $test = $this->pozorista_m->insert('LukaAdmin', null);
+        $test = $this->pozorista_m->insert('LukaAdmin', 'smth');
         $test_name = 'Insert with no Email in POST';
         $this->unit->run($test, $expected_result, $test_name, 'Insert should return FALSE if no Email in POST');
 
         $_POST['email'] = 'da@ne.com';
         $_POST['opis'] = null;
-        $test = $this->pozorista_m->insert('LukaAdmin', null);
+        $test = $this->pozorista_m->insert('LukaAdmin', 'smth');
         $test_name = 'Insert with no Opis in POST';
         $this->unit->run($test, $expected_result, $test_name, 'Insert should return FALSE if no Opis in POST');
 
@@ -123,31 +173,31 @@ class Tests extends Base {
 
 
         $_POST['naziv'] = null;
-        $test = $this->pozorista_m->update(null);
+        $test = $this->pozorista_m->update('smth');
         $test_name = 'Update with no Naziv in POST';
         $this->unit->run($test, $expected_result, $test_name, 'Update should return FALSE if no Naziv in POST');
 
         $_POST['naziv'] = 'Poz1';
         $_POST['adresa'] = null;
-        $test = $this->pozorista_m->update(null);
+        $test = $this->pozorista_m->update('smth');
         $test_name = 'Update with no Adresa in POST';
         $this->unit->run($test, $expected_result, $test_name, 'Update should return FALSE if no Adresa in POST');
 
         $_POST['adresa'] = 'Milana Rakica 1';
         $_POST['telefon'] = null;
-        $test = $this->pozorista_m->update(null);
+        $test = $this->pozorista_m->update('smth');
         $test_name = 'Update with no Telefon in POST';
         $this->unit->run($test, $expected_result, $test_name, 'Update should return FALSE if no Telefon in POST');
 
         $_POST['telefon'] = '0112412345';
         $_POST['email'] = null;
-        $test = $this->pozorista_m->update(null);
+        $test = $this->pozorista_m->update('smth');
         $test_name = 'Update with no Email in POST';
         $this->unit->run($test, $expected_result, $test_name, 'Update should return FALSE if no Email in POST');
 
         $_POST['email'] = 'da@ne.com';
         $_POST['opis'] = null;
-        $test = $this->pozorista_m->update(null);
+        $test = $this->pozorista_m->update('smth');
         $test_name = 'Update with no Opis in POST';
         $this->unit->run($test, $expected_result, $test_name, 'Update should return FALSE if no Opis in POST');
 
