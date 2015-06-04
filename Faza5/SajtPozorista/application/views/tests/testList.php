@@ -23,6 +23,13 @@
             </li>
  
         </ol>
+		<h2>Test kritike</h2>
+        <ol>
+            <li>
+                <h3><a href="<?php echo route_url('tests/testKritikeModel') ?>">Test Kritike model</a></h3><hr>
+            </li>
+ 
+        </ol>
         <h2>Test helper functions</h2>
         <ol>
             <li>

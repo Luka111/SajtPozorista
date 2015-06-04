@@ -58,6 +58,49 @@ class Tests extends Base {
         $this->viewIndicator = 'testPredstaveModel';
         $this->view();
     }
+	
+	public function testKritikeModel() {
+        $expected_result = 'is_false';
+ 
+        $test = $this->kritike_m->insert(null, null);
+        $test_name = 'Insert with no creator username';
+        $this->unit->run($test, $expected_result, $test_name, 'Insert should return FALSE if no username passed');
+ 
+        $_POST['naslov'] = null;
+        $test = $this->kritike_m->insert('LukaAdmin', null);
+        $test_name = 'Insert with no naslov in POST';
+        $this->unit->run($test, $expected_result, $test_name, 'Insert should return FALSE if no naslov in POST');
+ 
+        $_POST['sadrzaj'] = null;
+        $test = $this->kritike_m->insert('LukaAdmin', null);
+        $test_name = 'Insert with no sadrzaj in POST';
+        $this->unit->run($test, $expected_result, $test_name, 'Insert should return FALSE if no Sadrzaj in POST');
+ 
+        $test = $this->kritike_m->findOne(null);
+        $test_name = 'findOne with no id';
+        $this->unit->run($test, $expected_result, $test_name, 'findOne should return FALSE if no id passed');
+ 
+        $test = $this->kritike_m->findIDs(null);
+        $test_name = 'findOne with no KritID';
+        $this->unit->run($test, $expected_result, $test_name, 'findOne should return FALSE if no KritID passed');
+ 
+        $test = $this->kritike_m->removeOne(null);
+        $test_name = 'removeOne with no KritID';
+        $this->unit->run($test, $expected_result, $test_name, 'removeOne should return FALSE if no KritID passed');
+ 
+        $_POST['naslov'] = null;
+        $test = $this->kritike_m->update(null);
+        $test_name = 'Update with no naslov in POST';
+        $this->unit->run($test, $expected_result, $test_name, 'Update should return FALSE if no naslov in POST');
+ 
+        $_POST['sadrzaj'] = null;
+        $test = $this->kritike_m->update(null);
+        $test_name = 'Update with no sadrzaj in POST';
+        $this->unit->run($test, $expected_result, $test_name, 'Update should return FALSE if no sadrzaj in POST');
+ 
+        $this->viewIndicator = 'testKritikeModel';
+        $this->view();
+    }
     
     
     public  function testPozoristaModel(){
